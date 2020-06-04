@@ -18,8 +18,9 @@ from django.urls import path
 from django.conf.urls import url
 from django.urls import include, re_path
 from AssetInvestment.views import *
+
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     re_path(r'^$',index,name='index'),
     re_path(r'^index.html',index,name='index'),
     url(r'^combination',combination,name='combination'),
