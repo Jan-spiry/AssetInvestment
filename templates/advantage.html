@@ -1,0 +1,98 @@
+{% extends "horizontal-base.html" %}
+{% block page-content %}
+<!-- Start content -->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Single image lightbox</h4>
+                            <p class="sub-title">Three simple popups with different scaling settings.</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="mt-0 m-b-15 text-muted">Fits (Horz/Vert)</h6>
+                                    <a class="image-popup-vertical-fit" href="../static/assets/images/small/img-2.jpg" title="Caption. Can be aligned it to any side and contain any HTML.">
+                                        <img class="img-fluid d-block mo-mb-2" src="../static/assets/images/small/img-2.jpg" alt=""  width="145">
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="mt-0 mo-mt-2 m-b-15 text-muted">Effects</h6>
+                                    <a class="image-popup-no-margins" href="../static/assets/images/small/img-3.jpg">
+                                        <img class="img-fluid d-block" src="../static/assets/images/small/img-3.jpg" alt="" width="75">
+                                    </a>
+                                    <p class="mt-2 mb-0 text-muted">No gaps, zoom animation, close icon in top-right corner.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Lightbox gallery</h4>
+                            <p class="sub-title">In this example lazy-loading of images is enabled for the next image based on move direction. </p>
+
+                            <div class="popup-gallery">
+                                <a class="float-left" href="../static/assets/images/small/img-1.jpg" title="Project 1">
+                                    <div class="img-fluid d-block mx-auto">
+                                        <img src="../static/assets/images/small/img-1.jpg" alt="" width="120">
+                                    </div>
+                                </a>
+                                <a class="float-left" href="../static/assets/images/small/img-2.jpg" title="Project 2">
+                                    <div class="img-fluid d-block mx-auto">
+                                        <img src="../static/assets/images/small/img-2.jpg" alt="" width="120">
+                                    </div>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Zoom Gallery</h4>
+                            <p class="sub-title">Zoom effect works only with images.</p>
+
+                            <div class="zoom-gallery">
+                                <a class="float-left" href="../static/assets/images/small/img-3.jpg" title="Project 1"><img src="../static/assets/images/small/img-3.jpg" alt="" width="275" class="img-fluid"></a>
+                                <a class="float-left" href="../static/assets/images/small/img-7.jpg" title="Project 2"><img src="../static/assets/images/small/img-7.jpg" alt="" width="275" class="img-fluid"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Popup with video or map</h4>
+                            <p class="sub-title">In this example lazy-loading of images is enabled for the next image based on move direction. </p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <a class="popup-youtube mo-mb-2 btn btn-secondary" href="http://www.youtube.com/watch?v=0O2aH4XLbto">Open YouTube Video</a>
+                                    <a class="popup-vimeo mo-mb-2 btn btn-secondary" href="https://vimeo.com/45830194">Open Vimeo Video</a>
+                                    <a class="popup-gmaps mo-mb-2 btn btn-secondary" href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom">Open Google Map</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+        </div>
+<!-- content -->
+{% endblock %}

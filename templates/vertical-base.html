@@ -10,7 +10,7 @@
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
 
-    {% include "page_css.html" %}
+    {% include "vertical/page_css.html" %}
     {% block cutsom_css %}
     {% endblock %}
 </head>
@@ -21,12 +21,12 @@
     <div id="wrapper">
 
         <!-- Top Bar Start -->
-        {% include "page_header.html" %}
+        {% include "vertical/page_header.html" %}
 
         <!-- Top Bar End -->
 
         <!-- ========== Left Sidebar Start ========== -->
-        {% include "page_sidebar_menu.html" %}
+        {% include "vertical/page_sidebar_menu.html" %}
 
         <!-- Left Sidebar End -->
 
@@ -36,7 +36,7 @@
         <div class="content-page">
             {% block page-content%}
             {% endblock %}
-           {% include "page_footer.html" %}
+           {% include "vertical/page_footer.html" %}
         </div>
         <!-- ============================================================== -->
         <!-- End Right content here -->
@@ -46,7 +46,7 @@
     <!-- END wrapper -->
 
     <!-- jQuery  -->
-    {% include "page_js.html" %}
+    {% include "vertical/page_js.html" %}
     {% block cutsom_js %}
     {% endblock %}
     {% block custom_operation %}

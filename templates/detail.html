@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "vertical-base.html" %}
 
 {% block page-content %}
     <!-- Start content -->
@@ -9,10 +9,15 @@
                 <div class="col-xl-12">
                     <div class="card m-b-30">
                         <div class="card-body">
-
+                            <div class="button-items">
+                                <button type="button" class="btn btn-outline-secondary waves-effect">统计结果</button>
+                                <button type="button" class="btn btn-outline-primary waves-effect waves-light">实时动态</button>
+                            </div>
+                            <h4 class="mt-0 header-title"></h4>
                             <h4 class="mt-0 header-title">策略效果</h4>
                             <p class="sub-title d-inline-block text-truncate w-100">显示策略与其他常规策略的比较</p>
                             <div id="strategy-stats" style="height: 320px" class="flot-chart"></div>
+
 
                         </div>
                     </div>
@@ -55,7 +60,9 @@
 {% block cutsom_css %}
 {% endblock %}
 {% block cutsom_js %}
+    <script src="/static/assets/vertical/pages/flot.init.js"></script>
     <script src="../static/plugins/flot-chart/jquery.flot.min.js"></script>
+    <script src="../static/plugins/flot-chart/curvedLines.js"></script>
     <script src="../static/plugins/flot-chart/jquery.flot.time.js"></script>
     <script src="../static/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
     <script src="../static/plugins/flot-chart/jquery.flot.resize.js"></script>
@@ -65,50 +72,49 @@
     <script src="../static/plugins/flot-chart/curvedLines.js"></script>
     <script src="../static/plugins/flot-chart/jquery.flot.crosshair.js"></script>
 
-    <script src="/static/assets/pages/flot.init.js"></script>
 {% endblock %}
+
 
 {% block custom_operation %}
     <!--策略Pr-->
     <script>
-    var input={{ pg_change|safe }};
-    var Date = [];
-    DataLabel = ["Follow_loser", "Follow_winner", "PG", "UCPR"];
-    var Data = new Array();         //先声明一维
-    for (var i = 0; i < DataLabel.length; i++) {
-        Data[i] = new Array(i);
-    }
-    var tmp,cnt=0;
-    tmp ={{ follow_loser |safe }};
-    $.each(tmp, function (index, item) {
-        Data[cnt].push([index, item["Pr"]]);
-    });
-    cnt++;
+        var input={{ pg_change|safe }};
+        DataLabel = ["Follow_loser", "Follow_winner", "PG", "UCPR"];
+        var Data = new Array();         //先声明一维
+        for (var i = 0; i < DataLabel.length; i++) {
+            Data[i] = new Array(i);
+        }
+        var tmp,cnt=0;
+        tmp ={{ follow_loser |safe }};
+        $.each(tmp, function (index, item) {
+            Data[cnt].push([index, item["Pr"]]);
+        });
+        cnt++;
 
-    tmp ={{ follow_winner |safe }};
-    $.each(tmp, function (index, item) {
-        Data[cnt].push([index, item["Pr"]]);
-    });
-    cnt++;
+        tmp ={{ follow_winner |safe }};
+        $.each(tmp, function (index, item) {
+            Data[cnt].push([index, item["Pr"]]);
+        });
+        cnt++;
 
-    tmp ={{ pg |safe }};
-    $.each(tmp, function (index, item) {
-        Data[cnt].push([index, item["Pr"]]);
-    });
-    cnt++;
+        tmp ={{ pg |safe }};
+        $.each(tmp, function (index, item) {
+            Data[cnt].push([index, item["Pr"]]);
+        });
+        cnt++;
 
-    tmp ={{ ucpr |safe }};
-    $.each(tmp, function (index, item) {
-        Data[cnt].push([index, item["Pr"]]);
-    });
-    cnt++;
-    {#console.log(Data[0],Data[1]);#}
-    $.plot("#strategy-stats", [
-        {label: DataLabel[0], data: Data[0], lines: {show: true, fill: false}},
-        {label: DataLabel[1], data: Data[1], lines: {show: true, fill: false}},
-        {label: DataLabel[2], data: Data[2], lines: {show: true, fill: false}},
-        {label: DataLabel[3], data: Data[3], lines: {show: true, fill: false}},
-    ]);
+        tmp ={{ ucpr |safe }};
+        $.each(tmp, function (index, item) {
+            Data[cnt].push([index, item["Pr"]]);
+        });
+        cnt++;
+        {#console.log(Data[0],Data[1]);#}
+        $.plot("#strategy-stats", [
+            {label: DataLabel[0], data: Data[0], lines: {show: true, fill: false}},
+            {label: DataLabel[1], data: Data[1], lines: {show: true, fill: false}},
+            {label: DataLabel[2], data: Data[2], lines: {show: true, fill: false}},
+            {label: DataLabel[3], data: Data[3], lines: {show: true, fill: false}},
+        ]);
     </script>
     <!--实时权重-->
     <script>
@@ -141,18 +147,16 @@
     <!--权重变化-->
     <script>
         var input={{ pg_change|safe }};
-        var Date=[];
+
         var DataLabel=["000001_Prop","600036_Prop","600519_Prop","600837_Prop","600309_Prop"];
         var Data = new Array();         //先声明一维
         for (var i = 0; i < DataLabel.length; i++) {
             Data[i] = new Array(i);
         }
         $.each(input, function(index, item){
-            Date.push(item["Date"]);
             for(var idx=0;idx<DataLabel.length;idx++){
                 Data[idx].push([index,item[DataLabel[idx]]]);
             }
-            {#console.log(item["Date"]);#}
         });
         $.plot("#combination-stats", [
             {label: DataLabel[0], data: Data[0],lines: {show: true, fill: false}},

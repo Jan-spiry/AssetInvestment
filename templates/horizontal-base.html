@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>展示平台</title>
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
+
+    {% include "horizontal/page_css.html" %}
+    {% block cutsom_css %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    {% include "horizontal/page_header.html" %}
+    <!-- Top Bar End -->
+
+    <!-- Begin page -->
+    <div class="wrapper">
+        {% block page-content%}
+        {% endblock %}
+    </div>
+    <!-- END wrapper -->
+
+    {% include "horizontal/page_footer.html" %}
+
+    <!-- jQuery  -->
+    {% include "horizontal/page_js.html" %}
+    {% block cutsom_js %}
+    {% endblock %}
+    {% block custom_operation %}
+    {% endblock %}
+</body>
+
+</html>

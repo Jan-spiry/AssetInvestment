@@ -1,10 +1,15 @@
 from django.shortcuts import render
 import csv,json
 # Create your views here.
+def advantage(request):
+    return render(request, 'advantage.html', locals())
 def index(request):
     return render(request, 'index.html', locals())
 def combination(request):
     return render(request, 'combination.html', locals())
+
+
+
 def detail(request):
     with open('static/strategy_data/Follow_Loser.csv', 'r') as f:
         reader = csv.DictReader(f)
