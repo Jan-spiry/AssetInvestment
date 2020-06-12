@@ -84,16 +84,18 @@ WSGI_APPLICATION = 'Django.wsgi.application'
 # import pymysql
 # pymysql.install_as_MySQLdb()
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # mysql.connector.django
-        'NAME': 'ms',
+        'NAME': 'django',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': '987123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -117,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 

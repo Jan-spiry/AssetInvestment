@@ -19,6 +19,7 @@ from django.conf.urls import url
 from django.urls import include, re_path
 from AssetInvestment.views import *
 urlpatterns = [
+    path('admin/', admin.site.urls),
     re_path(r'^$',advantage,name='advantage'),
     re_path(r'^advantage',advantage,name='advantage'),
     # re_path(r'^$',index,name='index'),
