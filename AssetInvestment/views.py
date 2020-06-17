@@ -8,6 +8,15 @@ def index(request):
 def combination(request):
     return render(request, 'combination.html', locals())
 
+def register(request):
+    return render(request, 'pages-register.html', locals())
+
+def login(request):
+    return render(request, 'pages-login.html', locals())
+
+def forget(request):
+    return render(request, 'pages-recoverpw.html', locals())
+
 
 
 def detail(request):

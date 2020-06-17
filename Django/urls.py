@@ -18,6 +18,9 @@ from django.urls import path
 from django.conf.urls import url
 from django.urls import include, re_path
 from AssetInvestment.views import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$',advantage,name='advantage'),
@@ -26,6 +29,9 @@ urlpatterns = [
     re_path(r'^index',index,name='index'),
     url(r'^combination',combination,name='combination'),
     url(r'^detail',detail,name='detail'),
+    url(r'^register',register,name='register'),
+    url(r'^login',login,name='login'),
+    url(r'^forget',forget,name='forget'),
 ]
 
-
+urlpatterns += staticfiles_urlpatterns()
