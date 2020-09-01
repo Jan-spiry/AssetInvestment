@@ -1,0 +1,322 @@
+﻿<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<!--{% load static %}-->
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>展示平台</title>
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
+
+        <link href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="index" class="logo">
+                        <span class="logo-light">
+                                <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
+                            </span>
+                        <span class="logo-sm">
+                                <i class="mdi mdi-camera-control"></i>
+                            </span>
+                    </a>
+                </div>
+
+                <nav class="navbar-custom">
+                    <ul class="navbar-right list-inline float-right mb-0">
+
+
+                        <!-- full screen -->
+                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                            <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
+                                <i class="mdi mdi-arrow-expand-all noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <!-- notification -->
+                        <li class="dropdown notification-list list-inline-item">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline noti-icon"></i>
+                                <span class="badge badge-pill badge-danger noti-icon-badge">3</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1">
+                                <!-- item-->
+                                <h6 class="dropdown-item-text">
+                                        通知消息
+                                    </h6>
+                                <div class="slimscroll notification-item-list">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                        <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                        <p class="notify-details"><b>好友动态更新</b><span class="text-muted">您的好友User1调整了资产组合</span></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-danger"><i class="mdi mdi-message-text-outline"></i></div>
+                                        <p class="notify-details"><b>收到好友信息</b><span class="text-muted">您的好友User2向您发送了回复</span></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-info"><i class="mdi mdi-filter-outline"></i></div>
+                                        <p class="notify-details"><b>上市公司最新动态</b><span class="text-muted">有最新的公司动态000001平安银行</span></p>
+                                    </a>
+
+                                </div>
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
+                                        查看全部 <i class="fi-arrow-right"></i>
+                                    </a>
+                            </div>
+                        </li>
+
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+<!--                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                                    {% if username != '未登录' %}
+                                        <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                                    {% else %}
+                                        <p><a href="/login/" style="color:#ffffff;">{{username}}</a></p>
+                                    {% endif %}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                                    <a class="dropdown-item" href="{% url "center" %}"><i class="mdi mdi-wallet"></i>用户中心</a>
+            <!--                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>-->
+                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i>使用指引</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="/quit/"><i class="mdi mdi-power text-danger"></i>退出登录</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left waves-effect">
+                                <i class="mdi mdi-menu"></i>
+                            </button>
+                        </li>
+                        <li class="d-none d-md-inline-block">
+                            <form role="search" class="app-search">
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control" placeholder="搜索..">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
+
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu" id="side-menu">
+                            <li class="menu-title">菜单</li>
+                            <li>
+                                <a href="index" class="waves-effect">
+                                    <i class="icon-accelerator"></i><span class="badge badge-success badge-pill float-right"></span> <span> 首页 </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url "center" %}" class="waves-effect"><i class="icon-diamond"></i> <span> 用户中心 <span class="float-right menu-arrow"></span> </span> </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="icon-todolist-check"></i><span> 更多  <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li><a href={% url "advantage" %}>关于我们</a></li>
+                                    <li><a href="#">使用指引</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <!-- end page-title -->
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <h5>选择机器学习算法策略</h5>
+                                <p class="text-muted">使用人工智能机器学习算法提供资产组合的优质策略</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-30">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card pricing-box mt-4">
+                                <div class="pricing-icon">
+                                    <i class="ti-shield bg-success"></i>
+                                </div>
+                                <div class="pricing-content">
+                                    <div class="text-center">
+                                        <h5 class="text-uppercase mt-5">策略梯度下降算法</h5>
+            <!--                            <div class="pricing-plan mt-4 pt-2">-->
+            <!--                                <h1><sup>$ </sup>19 <small class="font-16">/ month</small></h1>-->
+            <!--                            </div>-->
+            <!--                            <div class="pricing-border mt-5"></div>-->
+                                    </div>
+                                    <div class="pricing-features mt-4">
+                                            <p class="font-14 mb-2"><i class="ti-check-box text-success mr-3"></i> 静态展示 </p>
+                                            <p class="font-14 mb-2"><i class="ti-check-box text-success mr-3"></i> 动态展示 </p>
+                                    </div>
+                                    <div class="pricing-border mt-4"></div>
+                                    <div class="mt-4 pt-3 text-center">
+                                        <a href="combination?model=1" class="btn btn-success btn-lg w-100 btn-round">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                                <div class="card pricing-box mt-4">
+                                    <div class="pricing-icon">
+                                        <i class="ti-shield bg-primary"></i>
+                                    </div>
+                                    <div class="pricing-content">
+                                        <div class="text-center">
+                                            <h5 class="text-uppercase mt-5">深度确定性策略梯度算法</h5>
+            <!--                                <div class="pricing-plan mt-4 pt-2">-->
+            <!--                                    <h1><sup>$ </sup>39 <small class="font-16">/ month</small></h1>-->
+            <!--                                </div>-->
+            <!--                                <div class="pricing-border mt-5"></div>-->
+                                        </div>
+                                        <div class="pricing-features mt-4">
+                                                <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> 静态展示 </p>
+                                                <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> 动态展示 </p>
+            <!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> Unlmited Users </p>-->
+            <!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> SEO optimization</p>-->
+            <!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> Customer Support</p>-->
+                                        </div>
+                                        <div class="pricing-border mt-4"></div>
+                                        <div class="mt-4 pt-3 text-center">
+                                            <a href="" class="btn btn-primary btn-lg w-100 btn-round">查看详情</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                    <div class="card pricing-box mt-4">
+                                        <div class="pricing-icon">
+                                            <i class="ti-shield bg-warning"></i>
+                                        </div>
+                                        <div class="pricing-content">
+                                            <div class="text-center">
+                                                <h5 class="text-uppercase mt-5">Actor-Critic算法</h5>
+            <!--                                    <div class="pricing-plan mt-4 pt-2">-->
+            <!--                                        <h1><sup>$ </sup>79 <small class="font-16">/ month</small></h1>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="pricing-border mt-5"></div>-->
+                                            </div>
+                                            <div class="pricing-features mt-4">
+                                                    <p class="font-14 mb-2"><i class="ti-check-box text-warning mr-3"></i> 静态展示 </p>
+                                                    <p class="font-14 mb-2"><i class="ti-check-box text-warning mr-3"></i> 动态展示 </p>
+                                            </div>
+                                            <div class="pricing-border mt-4"></div>
+                                            <div class="mt-4 pt-3 text-center">
+                                                <a href="" class="btn btn-warning btn-lg w-100 btn-round">查看详情</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
+                                        <div class="card pricing-box mt-4">
+                                            <div class="pricing-icon">
+                                                <i class="ti-shield bg-info"></i>
+                                            </div>
+                                            <div class="pricing-content">
+                                                <div class="text-center">
+                                                    <h5 class="text-uppercase mt-5">Q-Learning算法</h5>
+            <!--                                        <div class="pricing-plan mt-4 pt-2">-->
+            <!--                                            <h1><sup>$ </sup>99 <small class="font-16">/ month</small></h1>-->
+            <!--                                        </div>-->
+            <!--                                        <div class="pricing-border mt-5"></div>-->
+                                                </div>
+                                                <div class="pricing-features mt-4">
+                                                        <p class="font-14 mb-2"><i class="ti-check-box text-info mr-3"></i> 静态展示 </p>
+                                                        <p class="font-14 mb-2"><i class="ti-check-box text-info mr-3"></i> 动态展示 </p>
+                                                </div>
+            <!--                                    <div class="pricing-border mt-4"></div>-->
+                                                <div class="mt-4 pt-3 text-center">
+                                                    <a href="" class="btn btn-info btn-lg w-100 btn-round">查看详情</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                    </div>
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- content -->
+            <footer class="footer">
+                © 2020 投资组合管理系统 <i class="mdi mdi-heart text-danger"></i> by 大创小队</a></span>
+            </footer>
+
+        </div>
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+    <!-- jQuery  -->
+    {% include "vertical/page_js.html" %}
+    {% block cutsom_js %}
+    {% endblock %}
+    {% block custom_operation %}
+    {% endblock %}
+    </body>
+
+</html>

@@ -75,11 +75,11 @@
 
           //creating donut chart
           var $donutData = [
-              {label: "Download Sales", value: 12},
-              {label: "In-Store Sales", value: 30},
-              {label: "Mail-Order Sales", value: 20}
+              {label: "600519", value: 0.88},
+              {label: "600837", value: 0.11},
+              {label: "600307", value: 0.01}
           ];
-          // this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#30419b', '#02c58d']);
+           this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#30419b', '#02c58d']);
 
                   //create line chart Dark
         var $data1  = [

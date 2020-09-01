@@ -1,129 +1,561 @@
-{% extends "vertical-base.html" %}
-{% block page-content %}
-<!-- Start content -->
-<div class="content">
-    <div class="container-fluid">
+<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<!--{% load static %}-->
+{% load static %}
 
-        <!-- end page-title -->
+<html lang="en">
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="text-center">
-                    <h5>选择机器学习算法策略</h5>
-                    <p class="text-muted">使用人工智能机器学习算法提供资产组合的优质策略</p>
-                </div>
-            </div>
-        </div>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>展示平台</title>
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
 
-        <div class="row m-t-30">
-            <div class="col-xl-3 col-md-6">
-                <div class="card pricing-box mt-4">
-                    <div class="pricing-icon">
-                        <i class="ti-shield bg-success"></i>
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="../static/plugins/morris/morris.css">
+    <link href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/assets/horizontal/css/metismenu.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/assets/horizontal/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../static/assets/horizontal/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <div class="header-bg">
+        <!-- Navigation Bar-->
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container-fluid">
+
+                    <!-- Logo-->
+                    <div>
+                        <a href="index" class="logo">
+                            <span class="logo-light">
+                                    <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
+                            </span>
+                        </a>
                     </div>
-                    <div class="pricing-content">
-                        <div class="text-center">
-                            <h5 class="text-uppercase mt-5">策略梯度下降算法</h5>
-<!--                            <div class="pricing-plan mt-4 pt-2">-->
-<!--                                <h1><sup>$ </sup>19 <small class="font-16">/ month</small></h1>-->
+                    <!-- End Logo-->
+
+                    <div class="menu-extras topbar-custom navbar p-0">
+                        <ul class="list-inline d-none d-lg-block mb-0">
+                            <li class="hide-phone app-search float-left">
+                                <form role="search" class="app-search">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" placeholder="搜索..">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-right ml-auto list-inline float-right mb-0">
+
+                        <!-- full screen -->
+                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                            <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
+                                <i class="mdi mdi-arrow-expand-all noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+<!--                                    <p><a href="/login/" style="color:#ffffff;">{{username}}</a></p>-->
+<!--                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                                    {% if username != '未登录' %}
+                                        <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                                    {% else %}
+                                        <p><a href="{% url "login" %}" style="color:#ffffff;">{{username}}</a></p>
+                                    {% endif %}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                                    {% if username != '未登录' %}
+                                        <a class="dropdown-item" href="center.html"><i class="mdi mdi-wallet"></i>用户中心</a>
+                                    {% elif username == "未登录" %}
+                                        <a class="dropdown-item" href="login.html"><i class="mdi mdi-wallet"></i>用户中心(请登录)</a>
+                                    {% endif %}
+
+                                    <a class="dropdown-item d-block" href="#"><i class="mdi mdi-settings"></i>使用指引</a>
+<!--                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i></a>-->
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="/quit/"><i class="mdi mdi-power text-danger"></i>退出登录</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="menu-item dropdown notification-list list-inline-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!-- end menu-extras -->
+
+                <div class="clearfix"></div>
+
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end topbar-main -->
+
+                <!-- MENU Start -->
+                <div class="navbar-custom">
+                    <div class="container-fluid">
+
+                        <div id="navigation">
+
+                            <!-- Navigation Menu-->
+                            <ul class="navigation-menu">
+
+                                <li class="has-submenu">
+                                    {% if username != '未登录' %}
+                                        <a href="{% url "center" %}"><i class="icon-accelerator"></i>用户中心</a>
+                                    {% elif username == "未登录" %}
+                                        <a href="{% url "login" %}"><i class="icon-accelerator"></i>用户中心(请登录)</a>
+                                    {% endif %}
+<!--                                    <a href="center.html"><i class="icon-accelerator"></i>用户中心</a>-->
+                                </li>
+
+
+                                <li class="has-submenu">
+                                    <a href={% url "advantage" %}><i class="icon-life-buoy"></i>关于我们</a>
+                                </li>
+
+                                <li class="has-submenu">
+                                    <a href="#"><i class="icon-diamond"></i> 使用指引</a>
+                                </li>
+
+
+                            </ul>
+                            <!-- End navigation menu -->
+                        </div>
+                        <!-- end #navigation -->
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end navbar-custom -->
+            </header>
+            <!-- End Navigation Bar-->
+
+        </div>
+    <!-- header-bg -->
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="page-title-box">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <h4 class="page-title">快速体验——投资组合管理系统</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">首页</a></li>
+                            <li class="breadcrumb-item active">快速体验</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-heading p-4">
+                            <div class="mini-stat-icon float-right">
+                                <i class="mdi mdi-cube-outline bg-primary  text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-16">机器学习算法</h5>
+                            </div>
+                            <h3 class="mt-4">Policy Gradient<br>策略梯度下降算法</h3>
+<!--                            <div class="progress mt-4" style="height: 4px;">-->
+<!--                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>-->
 <!--                            </div>-->
-<!--                            <div class="pricing-border mt-5"></div>-->
+<!--                            <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p>-->
                         </div>
-                        <div class="pricing-features mt-4">
-                                <p class="font-14 mb-2"><i class="ti-check-box text-success mr-3"></i> 静态展示 </p>
-                                <p class="font-14 mb-2"><i class="ti-check-box text-success mr-3"></i> 动态展示 </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-heading p-4">
+                            <div class="mini-stat-icon float-right">
+                                <i class="mdi mdi-briefcase-check bg-success text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-16">资产组合</h5>
+                            </div>
+                            <h3 class="mt-4">华夏研究精选股票</h3>
+<!--                            <div class="progress mt-4" style="height: 4px;">-->
+<!--                                <div class="progress-bar bg-success" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                            </div>-->
+<!--                            <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">88%</span></p>-->
                         </div>
-                        <div class="pricing-border mt-4"></div>
-                        <div class="mt-4 pt-3 text-center">
-                            <a href="combination?model=1" class="btn btn-success btn-lg w-100 btn-round">查看详情</a>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-heading p-4">
+                            <div class="mini-stat-icon float-right">
+                                <i class="mdi mdi-buffer bg-danger text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-16">年化收益</h5>
+                            </div>
+                            <h3 class="mt-4">67.08%</h3>
+                            <div class="progress mt-4" style="height: 4px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="45"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="text-muted mt-2 mb-0"><span class="float-right">67.08%</span></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-heading p-4">
+                            <div class="mini-stat-icon float-right">
+                                <i class="mdi mdi-tag-text-outline bg-warning text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-16">平均年化收益</h5>
+                            </div>
+                            <h3 class="mt-4">44.97%</h3>
+                            <div class="progress mt-4" style="height: 4px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="text-muted mt-2 mb-0"><span class="float-right">44.97%</span></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title mb-4">策略收益比较</h4>
+                            <p>蓝色为当前机器学习算法策略</p>
+                            <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-xl-4">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-4">资产权重</h4>
+
+                            <div id="morris-donut-example" class="morris-charts morris-chart-height"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-4">好友动态</h4>
+                            <div class="friends-suggestions">
+                                <a href="#" class="friends-suggestions-list">
+                                    <div class="border-bottom position-relative">
+                                        <div class="float-left mb-0 mr-3">
+                                            <img src="../static/assets/images/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
+                                        </div>
+                                        <div class="suggestion-icon float-right mt-2 pt-1">
+                                            <i class="mdi mdi-plus"></i>
+                                        </div>
+
+                                        <div class="desc">
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">Ralph Ramirez</h5>
+                                            <p class="text-muted">选择了新的资产组合</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="friends-suggestions-list">
+                                    <div class="border-bottom position-relative">
+                                        <div class="float-left mb-0 mr-3">
+                                            <img src="../static/assets/images/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
+                                        </div>
+                                        <div class="suggestion-icon float-right mt-2 pt-1">
+                                            <i class="mdi mdi-plus"></i>
+                                        </div>
+
+                                        <div class="desc">
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">Patrick Beeler</h5>
+                                            <p class="text-muted">调整了资产配置权重</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="friends-suggestions-list">
+                                    <div class="border-bottom position-relative">
+                                        <div class="float-left mb-0 mr-3">
+                                            <img src="../static/assets/images/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
+                                        </div>
+                                        <div class="suggestion-icon float-right mt-2 pt-1">
+                                            <i class="mdi mdi-plus"></i>
+                                        </div>
+
+                                        <div class="desc">
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">Victor Zamora</h5>
+                                            <p class="text-muted">向您发来了消息</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="friends-suggestions-list">
+                                    <div class="border-bottom position-relative">
+                                        <div class="float-left mb-0 mr-3">
+                                            <img src="../static/assets/images/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
+                                        </div>
+                                        <div class="suggestion-icon float-right mt-2 pt-1">
+                                            <i class="mdi mdi-plus"></i>
+                                        </div>
+
+                                        <div class="desc">
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">Bryan Lacy</h5>
+                                            <p class="text-muted">有新的回复</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="friends-suggestions-list">
+                                    <div class="position-relative">
+                                        <div class="float-left mb-0 mr-3">
+                                            <img src="../static/assets/images/users/user-6.jpg" alt="" class="rounded-circle thumb-md">
+                                        </div>
+                                        <div class="suggestion-icon float-right mt-2 pt-1">
+                                            <i class="mdi mdi-plus"></i>
+                                        </div>
+
+                                        <div class="desc">
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">James Sorrells</h5>
+                                            <p class="text-muted mb-1">向您发来了消息</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-4">大盘走势</h4>
+                            <div id="morris-line-example" class="morris-chart" style="height: 360px"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title mb-4">个人动态</h4>
+                            <ol class="activity-feed mb-0">
+                                <li class="feed-item">
+                                    <div class="feed-item-list">
+                                        <p class="text-muted mb-1">今天</p>
+                                        <p class="font-15 mt-0 mb-0">增加了资产权重<b class="text-primary">600519贵州茅台</b></p>
+                                    </div>
+                                </li>
+                                <li class="feed-item">
+                                    <p class="text-muted mb-1">昨天</p>
+                                    <p class="font-15 mt-0 mb-0">收藏了公司新闻<b class="text-primary">000001平安银行</b></p>
+                                </li>
+                                <li class="feed-item">
+                                    <p class="text-muted mb-1">星期五2:30PM</p>
+                                    <p class="font-15 mt-0 mb-0">降低了资产权重<b class="text-primary">600837海通证券</b></p>
+                                </li>
+                                <li class="feed-item pb-1">
+                                    <p class="text-muted mb-1">星期四12:48 PM</p>
+                                    <p class="font-15 mt-0 mb-2">获取了大盘行情<b class="text-primary"></b></p>
+                                </li>
+
+                            </ol>
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-3 col-md-6">
-                    <div class="card pricing-box mt-4">
-                        <div class="pricing-icon">
-                            <i class="ti-shield bg-primary"></i>
-                        </div>
-                        <div class="pricing-content">
-                            <div class="text-center">
-                                <h5 class="text-uppercase mt-5">深度确定性策略梯度算法</h5>
-<!--                                <div class="pricing-plan mt-4 pt-2">-->
-<!--                                    <h1><sup>$ </sup>39 <small class="font-16">/ month</small></h1>-->
-<!--                                </div>-->
-<!--                                <div class="pricing-border mt-5"></div>-->
+            <!-- START ROW -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-4">交易记录</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">用户名</th>
+                                            <th scope="col">状态</th>
+                                            <th scope="col">金额</th>
+                                            <th scope="col">资产</th>
+                                            <th scope="col">交易后权重</th>
+                                            <th scope="col" colspan="2">日期</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>User0</td>
+                                            <td><span class="badge badge-success">减少</span></td>
+                                            <td>$312,000</td>
+                                            <td>
+                                                600837, 海通证券
+                                            </td>
+                                            <td>0.11</td>
+                                            <td>15/1/2018</td>
+
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User0</td>
+                                            <td><span class="badge badge-warning">增加</span></td>
+                                            <td>$942,000</td>
+                                            <td>
+                                                600519, 贵州茅台
+                                            </td>
+                                            <td>0.85</td>
+                                            <td>16/1/2019</td>
+
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User0</td>
+                                            <td><span class="badge badge-success">减少</span></td>
+                                            <td>$360,000</td>
+                                            <td>
+                                                600309, 万华化学
+                                            </td>
+                                            <td>0.01</td>
+                                            <td>17/1/2019</td>
+
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User0</td>
+                                            <td><span class="badge badge-danger">增加</span></td>
+                                            <td>$520,000</td>
+                                            <td>
+                                                600519, 贵州茅台
+                                            </td>
+                                            <td>0.93</td>
+                                            <td>18/1/2019</td>
+
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User0</td>
+                                            <td><span class="badge badge-success">减少</span></td>
+                                            <td>$425,000</td>
+                                            <td>
+                                                600837, 海通证券
+                                            </td>
+                                            <td>0.06</td>
+                                            <td>19/1/2019</td>
+
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="pricing-features mt-4">
-                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> 静态展示 </p>
-                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> 动态展示 </p>
-<!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> Unlmited Users </p>-->
-<!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> SEO optimization</p>-->
-<!--                                    <p class="font-14 mb-2"><i class="ti-check-box text-primary mr-3"></i> Customer Support</p>-->
-                            </div>
-                            <div class="pricing-border mt-4"></div>
-                            <div class="mt-4 pt-3 text-center">
-                                <a href="" class="btn btn-primary btn-lg w-100 btn-round">查看详情</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                        <div class="card pricing-box mt-4">
-                            <div class="pricing-icon">
-                                <i class="ti-shield bg-warning"></i>
-                            </div>
-                            <div class="pricing-content">
-                                <div class="text-center">
-                                    <h5 class="text-uppercase mt-5">Actor-Critic算法</h5>
-<!--                                    <div class="pricing-plan mt-4 pt-2">-->
-<!--                                        <h1><sup>$ </sup>79 <small class="font-16">/ month</small></h1>-->
-<!--                                    </div>-->
-<!--                                    <div class="pricing-border mt-5"></div>-->
-                                </div>
-                                <div class="pricing-features mt-4">
-                                        <p class="font-14 mb-2"><i class="ti-check-box text-warning mr-3"></i> 静态展示 </p>
-                                        <p class="font-14 mb-2"><i class="ti-check-box text-warning mr-3"></i> 动态展示 </p>
-                                </div>
-                                <div class="pricing-border mt-4"></div>
-                                <div class="mt-4 pt-3 text-center">
-                                    <a href="" class="btn btn-warning btn-lg w-100 btn-round">查看详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6">
-                            <div class="card pricing-box mt-4">
-                                <div class="pricing-icon">
-                                    <i class="ti-shield bg-info"></i>
-                                </div>
-                                <div class="pricing-content">
-                                    <div class="text-center">
-                                        <h5 class="text-uppercase mt-5">Q-Learning算法</h5>
-<!--                                        <div class="pricing-plan mt-4 pt-2">-->
-<!--                                            <h1><sup>$ </sup>99 <small class="font-16">/ month</small></h1>-->
-<!--                                        </div>-->
-<!--                                        <div class="pricing-border mt-5"></div>-->
-                                    </div>
-                                    <div class="pricing-features mt-4">
-                                            <p class="font-14 mb-2"><i class="ti-check-box text-info mr-3"></i> 静态展示 </p>
-                                            <p class="font-14 mb-2"><i class="ti-check-box text-info mr-3"></i> 动态展示 </p>
-                                    </div>
-<!--                                    <div class="pricing-border mt-4"></div>-->
-                                    <div class="mt-4 pt-3 text-center">
-                                        <a href="" class="btn btn-info btn-lg w-100 btn-round">查看详情</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+            <!-- END ROW -->
 
         </div>
-
+        <!-- end container-fluid -->
     </div>
-    <!-- container-fluid -->
+    <!-- end wrapper -->
 
-</div>
-<!-- content -->
-{% endblock %}
+    <!-- Footer -->
+    <footer class="footer">
+    © 2020 投资组合管理平台 <i class="mdi mdi-heart text-danger"></i> by 大创小队</a></span>
+    </footer>
+
+    <!-- End Footer -->
+
+    <!-- jQuery  -->
+    <script src="../static/assets/horizontal/js/jquery.min.js"></script>
+    <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../static/assets/horizontal/js/jquery.slimscroll.js"></script>
+    <script src="../static/assets/horizontal/js/waves.min.js"></script>
+
+    <!--Morris Chart-->
+    <script src="../static/plugins/morris/morris.min.js"></script>
+    <script src="../static/plugins/raphael/raphael.min.js"></script>
+    <script src="../static/assets/horizontal/pages/dashboard.init.js"></script>
+
+    <!-- App js -->
+    <script src="../static/assets/horizontal/js/app.js"></script>
+
+</body>
+
+</html>

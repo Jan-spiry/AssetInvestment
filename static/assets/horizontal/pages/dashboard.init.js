@@ -71,27 +71,27 @@
               {y: '2018', a: 75, b: 240, c:120},
               {y: '2019', a: 30, b: 30, c:30}
           ];
-          this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#fcbe2d', '#02c58d', '#30419b']);
+          this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Winner', 'Loser', 'Policy Gradient'], ['#fcbe2d', '#02c58d', '#30419b']);
 
           //creating donut chart
-          var $donutData = [
-              {label: "Download Sales", value: 12},
-              {label: "In-Store Sales", value: 30},
-              {label: "Mail-Order Sales", value: 20}
-          ];
-          this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#30419b', '#02c58d']);
-
+        var $donutData = [
+           {label: "600307", value: 0.01},
+           {label: "600837", value: 0.11},
+           {label: "600519", value: 0.88}
+        ];
+        this.createDonutChart('morris-donut-example', $donutData, ['#fcbe2d', '#30419b', '#02c58d']);
                   //create line chart Dark
         var $data1  = [
-          { y: '2009', a: 20, b: 5 },
-          { y: '2010', a: 45,  b: 35 },
-          { y: '2011', a: 50,  b: 40 },
-          { y: '2012', a: 75,  b: 65 },
-          { y: '2013', a: 50,  b: 40 },
-          { y: '2014', a: 75,  b: 65 },
-          { y: '2015', a: 100, b: 90 }
+          { y:'2012', a: 9116.48,  b: 2269.13 },
+          { y:'2013', a: 8121.79,  b: 2115.98 },
+          { y:'2014', a: 11014.62,  b: 3234.68 },
+          { y:'2015', a: 12664.89, b: 3539.18 },
+          { y:'2016', a: 10177.14, b: 3103.64},
+          { y:'2017', a: 11040.45, b: 3307.17},
+          { y:'2018', a: 7239.79, b: 2493.90},
+          { y:'2019', a: 10430.77, b: 3050.12}
       ];
-      this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#30419b', '#02c58d']);
+      this.createLineChart1('morris-line-example', $data1, 'y', ['a', 'b'], ['深证成指', '上证指数'], ['#30419b', '#02c58d']);
 
 
 

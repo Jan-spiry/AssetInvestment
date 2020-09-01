@@ -2144,7 +2144,9 @@ label {
   Form-Validation
 ===================*/
 .error {
+  margin-left: 2rem;
   color: #ff0000;
+  display: none;
 }
 
 .parsley-error {
@@ -3672,3 +3674,7 @@ table.focus-on tbody tr.focused td {
   padding-left: 20px;
 }
 /*# sourceMappingURL=style.css.map */
+.position0 {
+    position: relative;
+    float: right;
+}

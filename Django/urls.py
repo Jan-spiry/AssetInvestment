@@ -19,19 +19,30 @@ from django.conf.urls import url
 from django.urls import include, re_path
 from AssetInvestment.views import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from AssetInvestment import views
+from django.contrib import staticfiles
+from django.conf import settings
+from django.views.static import serve
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^$',advantage,name='advantage'),
+    re_path(r'^$',index,name='index'),
     re_path(r'^advantage',advantage,name='advantage'),
-    # re_path(r'^$',index,name='index'),
+    re_path(r'^$',index,name='index'),
     re_path(r'^index',index,name='index'),
+    url(r'^person',person,name='person'),
+    url(r'^center',center,name='center'),
     url(r'^combination',combination,name='combination'),
     url(r'^detail',detail,name='detail'),
     url(r'^register',register,name='register'),
     url(r'^login',login,name='login'),
     url(r'^forget',forget,name='forget'),
+    url(r'^static/(?P<path>.*)$',serve,{'document_root': settings.STATIC_ROOT}),
+    # 验证账号是否已经被注册
+    url(r'^checkuserid/$', checkuserid, name="checkuserid"),
+    # 退出登录
+    url(r'^quit/$', quit, name="quit"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

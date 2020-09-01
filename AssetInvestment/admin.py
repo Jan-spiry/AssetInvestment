@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Portfolio, Asset, tData
+from .models import Portfolio, Asset, tData, User
 
 
 class PortfolioAdmin(admin.ModelAdmin):
@@ -30,3 +30,4 @@ class AssetAdmin(admin.ModelAdmin):
 admin.site.register(Portfolio,PortfolioAdmin)
 admin.site.register(Asset,AssetAdmin)
 admin.site.register(tData)
+admin.site.register(User)

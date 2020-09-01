@@ -4,9 +4,9 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="advantage" class="logo">
+        <a href="index" class="logo">
             <span class="logo-light">
-                    <i class="mdi mdi-camera-control"></i> FOR AI
+                    <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
                 </span>
             <span class="logo-sm">
                     <i class="mdi mdi-camera-control"></i>
@@ -34,43 +34,31 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1">
                     <!-- item-->
                     <h6 class="dropdown-item-text">
-                            Notifications
+                            通知消息
                         </h6>
                     <div class="slimscroll notification-item-list">
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item active">
                             <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                            <p class="notify-details"><b>Your order is placed</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
+                            <p class="notify-details"><b>好友动态更新</b><span class="text-muted">您的好友User1调整了资产组合</span></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-danger"><i class="mdi mdi-message-text-outline"></i></div>
-                            <p class="notify-details"><b>New Message received</b><span class="text-muted">You have 87 unread messages</span></p>
+                            <p class="notify-details"><b>收到好友信息</b><span class="text-muted">您的好友User2向您发送了回复</span></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-info"><i class="mdi mdi-filter-outline"></i></div>
-                            <p class="notify-details"><b>Your item is shipped</b><span class="text-muted">It is a long established fact that a reader will</span></p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-success"><i class="mdi mdi-message-text-outline"></i></div>
-                            <p class="notify-details"><b>New Message received</b><span class="text-muted">You have 87 unread messages</span></p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-warning"><i class="mdi mdi-cart-outline"></i></div>
-                            <p class="notify-details"><b>Your order is placed</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
+                            <p class="notify-details"><b>上市公司最新动态</b><span class="text-muted">有最新的公司动态000001平安银行</span></p>
                         </a>
 
                     </div>
                     <!-- All-->
                     <a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
-                            View all <i class="fi-arrow-right"></i>
+                            查看全部 <i class="fi-arrow-right"></i>
                         </a>
                 </div>
             </li>
@@ -78,16 +66,21 @@
             <li class="dropdown notification-list list-inline-item">
                 <div class="dropdown notification-list nav-pro-img">
                     <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">
+<!--                        <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                        {% if username != '未登录' %}
+                            <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                        {% else %}
+                            <p><a href="/login/" style="color:#ffffff;">{{username}}</a></p>
+                        {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <!-- item-->
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> Wallet</a>
-                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a>
+                        <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                        <a class="dropdown-item" href="{% url "center" %}"><i class="mdi mdi-wallet"></i>用户中心</a>
+<!--                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>-->
+                        <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i>使用指引</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="{% url "login" %}"><i class="mdi mdi-power text-danger"></i>退出登录</a>
                     </div>
                 </div>
             </li>

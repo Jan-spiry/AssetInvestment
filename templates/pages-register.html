@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<!--{% load static %}-->
+{% load static %}
 <html lang="en">
 
     <head>
@@ -8,12 +11,13 @@
         <title>注册界面</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../static/assets/images/favicon.ico">
+
 
         <link href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/style.css" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -22,48 +26,133 @@
         <!-- Begin page -->
         <div class="accountbg"></div>
         <div class="home-btn d-none d-sm-block">
-                <a href="index.html" class="text-white"><i class="fas fa-home h2"></i></a>
+                <a href={% url "index" %} class="text-white"><i class="fas fa-home h2"></i></a>
             </div>
         <div class="wrapper-page">
                 <div class="card card-pages shadow-none">
     
                     <div class="card-body">
                         <div class="text-center m-t-0 m-b-15">
-                                <a href="index.html" class="logo logo-admin"><img src="assets/images/logo-dark.png" alt="" height="24"></a>
+                                 <a href={% url "index" %} class="logo logo-admin"><img src="../static/assets/images/logo.png" alt="" height="50"></a>
                         </div>
                         <h5 class="font-18 text-center">注册</h5>
-    
-                        <form class="form-horizontal m-t-30" action="index.html">
+<!--    表单类写法-->
+<!--                        <form class="form-horizontal m-t-30" action="index.html" method="post">-->
+<!--                                {% csrf_token %}-->
+<!--                                <div class="form-group">-->
+<!--                                        <div class="col-12">-->
+<!--                                                <label>邮箱</label>-->
+<!--                                                {{form.userEmail}}-->
+<!--                                                {% if error.userEmail.0 %}-->
+<!--                                                <span>{{error.userEmail.0}}</span>-->
+<!--                                                {% endif %}-->
+<!--&lt;!&ndash;                                            <input class="form-control" type="text" required="" placeholder="邮箱">&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                </div>-->
+<!--    -->
+<!--                            <div class="form-group">-->
+<!--                                <div class="col-12">-->
+<!--                                        <label>用户名</label>-->
+<!--                                        {{form.username}}-->
+<!--                                        {% if error.username.0 %}-->
+<!--                                        <span>{{error.username.0}}</span>-->
+<!--                                        {% endif %}-->
+<!--&lt;!&ndash;                                    <input class="form-control" type="text" required="" placeholder="用户名">&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--    -->
+<!--                            <div class="form-group">-->
+<!--                                <div class="col-12">-->
+<!--                                        <label>密码</label>-->
+<!--                                        {{form.passwd}}-->
+<!--                                        {% if error.passwd.0 %}-->
+<!--                                        <span>{{error.passwd.0}}</span>-->
+<!--                                        {% endif %}-->
+<!--&lt;!&ndash;                                    <input class="form-control" type="password" required="" placeholder="密码">&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        <form class="form-horizontal m-t-30" action="/register/" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
 
-                                <div class="form-group">
-                                        <div class="col-12">
-                                                <label>邮箱</label>
-                                            <input class="form-control" type="text" required="" placeholder="Email">
-                                        </div>
-                                    </div>
-    
                             <div class="form-group">
                                 <div class="col-12">
-                                        <label>用户名</label>
-                                    <input class="form-control" type="text" required="" placeholder="Username">
+                                        <label>账号</label>
+                                        <input id="account" class="form-control" type="text" required="required"
+                                               placeholder="账号长度为6到20个字符" aria-describedby="basic-addon1"
+                                               name="userAccount">
                                 </div>
+                                <span id="accounterr" class="error">账号格式输入错误</span>
+                                <span id="checkerr" class="error">账号已被占用，请重新输入</span>
                             </div>
-    
+
                             <div class="form-group">
                                 <div class="col-12">
                                         <label>密码</label>
-                                    <input class="form-control" type="password" required="" placeholder="Password">
+                                        <input id="pass" class="form-control" type="password" required="required"
+                                               placeholder="密码长度为6到20个字符" aria-describedby="basic-addon1"
+                                        name="userPass">
                                 </div>
+                                <span id="passerr" class="error">密码格式输入错误</span>
                             </div>
-    
+
                             <div class="form-group">
                                 <div class="col-12">
-                                        <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label font-weight-normal" for="customCheck1">我同意并愿意遵守网站 <a href="#" class="text-primary">用户协议和隐私政策</a></label>
-                                            </div>
+                                        <label>请再次输入密码</label>
+                                        <input id="passwd" class="form-control" type="password" required="required"
+                                               placeholder="密码长度为6到20个字符" aria-describedby="basic-addon1"
+                                        name="userPasswd">
+                                </div>
+                                <span id="passwderr" class="error">两次密码输入不同</span>
+                            </div>
+
+                            <div class="form-group">
+                                    <div class="col-12">
+                                        <label>邮箱</label>
+                                        <input id="email" class="form-control" type="text" required=""
+                                               placeholder="邮箱" aria-describedby="basic-addon1" name="userEmail">
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                        <label>头像</label>
+                                        <input class="form-control" type="file" required="required"
+                                               aria-describedby="basic-addon1" name="userImg">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                        <label>昵称</label>
+                                        <input class="form-control" type="text" required="required"
+                                               aria-describedby="basic-addon1" name="userName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                        <label>电话</label>
+                                        <input class="form-control" type="text" required=""
+                                               aria-describedby="basic-addon1" name="userPhone">
+                                </div>
+                            </div>
+
+<!--                            <div class="form-group">-->
+<!--                                <div class="col-12">-->
+<!--                                        <label>电话</label>-->
+<!--                                        <input class="form-control" type="text" required="required"-->
+<!--                                               aria-describedby="basic-addon1" name="userPhone">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <div class="col-12">-->
+<!--                                        <div class="custom-control custom-checkbox">-->
+<!--                                                <input type="checkbox" class="custom-control-input" id="customCheck1">-->
+<!--                                                <label class="custom-control-label font-weight-normal" for="customCheck1">我同意并愿意遵守<a href="#" class="text-primary">网站用户协议和隐私政策</a></label>-->
+<!--                                            </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
     
                             <div class="form-group text-center m-t-20">
                                 <div class="col-12">
@@ -75,7 +164,7 @@
                                     <div class="col-12 m-t-10 text-center">
                                         <a href={% url "login" %} class="text-muted">已经有账号了?</a>
                                     </div>
-                                </div>
+                            </div>
                         </form>
                     </div>
     
@@ -84,14 +173,19 @@
         <!-- END wrapper -->
 
         <!-- jQuery  -->
-        <script src="../static/horizontal/assets/js/jquery.min.js"></script>
-        <script src="../static/assets/js/metismenu.min.js"></script>
-        <script src="../static/assets/js/jquery.slimscroll.js"></script>
-        <script src="../static/assets/js/waves.min.js"></script>
-
+<!--        <script src="../static/assets/vertical/js/jquery.min.js"></script>-->
+<!--        <script src="../static/assets/js/metismenu.min.js"></script>-->
+<!--        <script src="../static/assets/js/jquery.slimscroll.js"></script>-->
+<!--        <script src="../static/assets/js/waves.min.js"></script>-->
+            <script src="../static/assets/vertical/js/jquery.min.js"></script>-->
+            <script src="../static/assets/vertical/js/metismenu.min.js"></script>
+            <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script src="../static/assets/vertical/js/jquery.slimscroll.js"></script>
+            <script src="../static/assets/vertical/js/waves.min.js"></script>
+            <script src="../static/assets/vertical/js/register.js"></script>
         <!-- App js -->
-        <script src="../static/assets/js/app.js"></script>
-        
+<!--        <script src="../static/assets/js/app.js"></script>-->
+        <script src="../static/assets/vertical/js/app.js"></script>
     </body>
 
 </html>

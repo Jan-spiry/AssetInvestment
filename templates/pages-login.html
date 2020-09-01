@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<!--{% load static %}-->
+{% load static %}
 <html lang="en">
 
     <head>
@@ -8,12 +11,12 @@
         <title>登录界面</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../static/assets/images/favicon.ico">
 
         <link href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="../static/assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/style.css" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -29,23 +32,31 @@
     
                     <div class="card-body">
                         <div class="text-center m-t-0 m-b-15">
-                                <a href={% url "index" %} class="logo logo-admin"><img src="assets/images/logo-dark.png" alt="" height="24"></a>
+                                <a href={% url "index" %} class="logo logo-admin"><img src="../static/assets/images/logo.png" alt="" height="50"></a>
                         </div>
                         <h5 class="font-18 text-center">登录到投资组合管理系统</h5>
     
-                        <form class="form-horizontal m-t-30" action="index.html">
-    
+                        <form class="form-horizontal m-t-30" action="/login/" method="post">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <div class="col-12">
-                                        <label>用户名</label>
-                                    <input class="form-control" type="text" required="" placeholder="Username">
+                                        <label>账号</label>
+                                        {{form.username}}
+<!--                                    <input class="form-control" type="text" required="" placeholder="账号">-->
+                                    {% if error.username.0 %}
+                                    <span>{{error.username.0}}</span>
+                                    {% endif %}
                                 </div>
                             </div>
     
                             <div class="form-group">
                                 <div class="col-12">
                                         <label>密码</label>
-                                    <input class="form-control" type="password" required="" placeholder="Password">
+                                        {{form.passwd}}
+                                    {% if error.passwd.0 %}
+                                    <span>{{error.passwd.0}}</span>
+                                    {% endif %}
+<!--                                    <input class="form-control" type="password" required="" placeholder="密码">-->
                                 </div>
                             </div>
     
@@ -55,7 +66,7 @@
                                             <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                                     <label class="custom-control-label" for="customCheck1"> 记住我</label>
-                                                  </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +82,7 @@
                                     <a href={% url "forget" %} class="text-muted"><i class="fa fa-lock m-r-5"></i> 忘记密码?</a>
                                 </div>
                                 <div class="col-sm-5 text-right">
-                                    <a href={% url "register" %} class="text-muted">创建账户</a>
+                                    <a href={% url "register" %} class="text-muted">注册账号</a>
                                 </div>
                             </div>
                         </form>
@@ -80,17 +91,35 @@
                 </div>
             </div>
         <!-- END wrapper -->
-
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="assets/js/metismenu.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/waves.min.js"></script>
+<!--        {% block cutsom_js %}-->
+            <script src="../static/assets/vertical/js/jquery.min.js"></script>-->
+            <script src="../static/assets/vertical/js/metismenu.min.js"></script>
+            <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script src="../static/assets/vertical/js/jquery.slimscroll.js"></script>
+            <script src="../static/assets/vertical/js/waves.min.js"></script>
 
-        <!-- App js -->
-        <script src="assets/js/app.js"></script>
-        
+
+<!--            <script src="/static/assets/vertical/js/jquery.min.js"></script>&ndash;&gt;-->
+<!--            <script src="../static/assets/vertical/js/metismenu.min.js"></script>-->
+<!--            <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+<!--            <script src="../static/assets/vertical/js/jquery.slimscroll.js' %}"></script>-->
+<!--            <script src="../static/assets/vertical/js/waves.min.js' %} "></script>-->
+
+
+<!--            <script src="{% static '/assets/vertical/js/jquery.min.js'%}"></script>-->
+<!--            <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+<!--            <script src="{% static '/assets/vertical/js/metismenu.min.js'%}"></script>-->
+<!--            <script src="{% static '/assets/vertical/js/jquery.slimscroll.js'%}"></script>-->
+<!--            <script src="{% static '/assets/vertical/js/waves.min.js'%}"></script>-->
+<!--            <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+    <!--        <script src="Django/templates/assets/js/metismenu.min.js"></script>-->
+    <!--        <script src="Django/templates/assets/js/jquery.slimscroll.js"></script>-->
+    <!--        <script src="Django/templates/assets/js/waves.min.js"></script>-->
+
+            <!-- App js -->
+            <script src="../static/assets/vertical/js/app.js"></script>
+<!--        {% endblock %}-->
     </body>
 
 </html>

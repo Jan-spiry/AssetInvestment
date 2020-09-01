@@ -1,5 +1,158 @@
-{% extends "horizontal-base.html" %}
-{% block page-content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>展示平台</title>
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
+    {% include "horizontal/page_css.html" %}
+    {% block cutsom_css %}
+    {% endblock %}
+</head>
+
+<body>
+<div class="header-bg">
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container-fluid">
+
+                <!-- Logo-->
+                <div>
+                    <a href="index" class="logo">
+                        <span class="logo-light">
+                                <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
+                        </span>
+                    </a>
+                </div>
+                <!-- End Logo-->
+
+                <div class="menu-extras topbar-custom navbar p-0">
+                    <ul class="list-inline d-none d-lg-block mb-0">
+                        <li class="hide-phone app-search float-left">
+                            <form role="search" class="app-search">
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control" placeholder="搜索..">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-right ml-auto list-inline float-right mb-0">
+                        <!-- full screen -->
+                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                            <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
+                                <i class="mdi mdi-arrow-expand-all noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+<!--                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                                    {% if username != '未登录' %}
+                                        <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                                    {% else %}
+                                        <p><a href="{% url "login" %}" style="color:#ffffff;">{{username}}</a></p>
+                                    {% endif %}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                                    <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i>用户中心</a>
+                                    <a class="dropdown-item d-block" href="#"><i class="mdi mdi-settings"></i>使用指引</a>
+<!--                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i></a>-->
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="/quit/"><i class="mdi mdi-power text-danger"></i>退出登录</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="menu-item dropdown notification-list list-inline-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!-- end menu-extras -->
+
+                <div class="clearfix"></div>
+
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end topbar-main -->
+
+        <!-- MENU Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+
+                <div id="navigation">
+
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+
+                        <li class="has-submenu">
+                            <a href="center.html"><i class="icon-accelerator"></i>用户中心</a>
+                        </li>
+
+<!--                        <li class="has-submenu">-->
+<!--                            <a href="#"><i class="icon-pencil-ruler"></i>快速体验</a>-->
+<!--&lt;!&ndash;                            <ul class="submenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><a href="#">查看策略</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><a href="#">私人订制</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </ul>&ndash;&gt;-->
+<!--                        </li>-->
+
+                        <li class="has-submenu">
+                            <a href={% url "advantage" %}><i class="icon-life-buoy"></i> 关于我们</a>
+<!--                            <ul class="submenu">-->
+<!--                                <li><a href="#">我的组合 </a></li>-->
+<!--                                <li><a href="#">会员中心 </a></li>-->
+<!--                            </ul>-->
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="icon-diamond"></i> 使用指引</a>
+<!--                              <ul class="submenu megamenu">-->
+<!--                                <li>-->
+<!--                                    <ul>-->
+<!--                                        <li><a href="#">关于我们</a></li>-->
+<!--    &lt;!&ndash;                                    <li><a href="#">常见问题</a></li>&ndash;&gt;-->
+<!--                                        <li><a href="#">使用指引</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+
+<!--                            </ul>-->
+                        </li>
+
+
+                    </ul>
+                    <!-- End navigation menu -->
+                </div>
+                <!-- end #navigation -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+
+</div>
+<div class="wrapper">
 <!-- Start content -->
         <div class="container-fluid">
 
@@ -86,16 +239,22 @@
                     <div class="card m-b-30">
                         <div class="card-body">
 
-                            <h4 class="mt-0 header-title">用户服务</h4>
-                            <p class="sub-title">选择注册、登录或快速体验 </p>
+                            <h4 class="mt-0 header-title">项目团队</h4>
+                            <p class="sub-title">四川大学计算视觉与图像处理实验室<br>大创小队</p>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <a class="popup-youtube mo-mb-2 btn btn-secondary" href="file:///F:/Django/Stexo/horizontal/pages-register.html">用户注册</a>
-                                    <a class="popup-vimeo mo-mb-2 btn btn-secondary" href="file:///F:/Django/Stexo/horizontal/pages-login.html">用户登录</a>
-                                    <a class="popup-gmaps mo-mb-2 btn btn-secondary" href="">快速体验</a>
-                                </div>
-                            </div>
+                            <h4 class="mt-0 header-title">指导老师</h4>
+                            <p class="sub-title">李旭伟副教授 </p>
+
+                            <h4 class="mt-0 header-title">项目顾问</h4>
+                            <p class="sub-title">王康 </p>
+
+<!--                            <div class="row">-->
+<!--                                <div class="col-12">-->
+<!--                                    <a class="popup-youtube mo-mb-2 btn btn-secondary" href={% url "register" %}>用户注册</a>-->
+<!--                                    <a class="popup-vimeo mo-mb-2 btn btn-secondary" href={% url "login" %}>用户登录</a>-->
+<!--                                    <a class="popup-gmaps mo-mb-2 btn btn-secondary" href="">快速体验</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                         </div>
                     </div>
@@ -104,4 +263,17 @@
 
         </div>
 <!-- content -->
-{% endblock %}
+</div>
+<!-- END wrapper -->
+    <footer class="footer">
+        © 2020 投资组合管理系统 <i class="mdi mdi-heart text-danger"></i> by 大创小队</a></span>
+    </footer>
+    {% include "horizontal/page_js.html" %}
+    {% block cutsom_js %}
+    {% endblock %}
+    {% block custom_operation %}
+    {% endblock %}
+
+</body>
+
+</html>

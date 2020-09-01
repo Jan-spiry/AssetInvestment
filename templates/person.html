@@ -1,0 +1,280 @@
+<!--<!DOCTYPE html>-->
+{% load staticfiles %}
+<!--{% load static %}-->
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>展示平台</title>
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <link rel="shortcut icon" href="../static/assets/images/favicon.ico">
+
+        <link href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="../static/assets/vertical/css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="index" class="logo">
+                        <span class="logo-light">
+                                <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
+                            </span>
+                        <span class="logo-sm">
+                                <i class="mdi mdi-camera-control"></i>
+                            </span>
+                    </a>
+                </div>
+
+                <nav class="navbar-custom">
+                    <ul class="navbar-right list-inline float-right mb-0">
+
+
+                        <!-- full screen -->
+                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                            <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
+                                <i class="mdi mdi-arrow-expand-all noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <!-- notification -->
+                        <li class="dropdown notification-list list-inline-item">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline noti-icon"></i>
+                                <span class="badge badge-pill badge-danger noti-icon-badge">3</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1">
+                                <!-- item-->
+                                <h6 class="dropdown-item-text">
+                                        通知消息
+                                    </h6>
+                                <div class="slimscroll notification-item-list">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                        <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                        <p class="notify-details"><b>好友动态更新</b><span class="text-muted">您的好友User1调整了资产组合</span></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-danger"><i class="mdi mdi-message-text-outline"></i></div>
+                                        <p class="notify-details"><b>收到好友信息</b><span class="text-muted">您的好友User2向您发送了回复</span></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-info"><i class="mdi mdi-filter-outline"></i></div>
+                                        <p class="notify-details"><b>上市公司最新动态</b><span class="text-muted">有最新的公司动态000001平安银行</span></p>
+                                    </a>
+
+                                </div>
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
+                                        查看全部 <i class="fi-arrow-right"></i>
+                                    </a>
+                            </div>
+                        </li>
+
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+<!--                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                                    {% if username != '未登录' %}
+                                        <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                                    {% else %}
+                                        <p><a href="/login/" style="color:#ffffff;">{{username}}</a></p>
+                                    {% endif %}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                                    <a class="dropdown-item" href="{% url "center" %}"><i class="mdi mdi-wallet"></i>用户中心</a>
+            <!--                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>-->
+                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i>使用指引</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="{% url "login" %}"><i class="mdi mdi-power text-danger"></i>退出登录</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left waves-effect">
+                                <i class="mdi mdi-menu"></i>
+                            </button>
+                        </li>
+                        <li class="d-none d-md-inline-block">
+                            <form role="search" class="app-search">
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control" placeholder="搜索..">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
+
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu" id="side-menu">
+                            <li class="menu-title">菜单</li>
+                            <li>
+                                <a href="index" class="waves-effect">
+                                    <i class="icon-accelerator"></i><span class="badge badge-success badge-pill float-right"></span> <span> 首页 </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url "center" %}" class="waves-effect"><i class="icon-diamond"></i> <span> 用户中心 <span class="float-right menu-arrow"></span> </span> </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="icon-todolist-check"></i><span> 更多  <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li><a href={% url "advantage" %}>关于我们</a></li>
+                                    <li><a href="#">使用指引</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="page-title-box">
+                            <div class="row align-items-center">
+                                <div class="col-sm-6">
+                                    <h4 class="page-title">个人信息</h4>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ol class="breadcrumb float-right">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">用户中心</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">个人信息</a></li>
+                                    </ol>
+                                </div>
+                            </div> <!-- end row -->
+                        </div>
+                        <!-- end page-title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+        
+                                        <h4 class="mt-0 header-title">尊敬的用户, 您好</h4>
+                                        <p class="sub-title">此处为您的基本个人信息<code
+                                                class="highlighter-rouge">可进行设置</code>
+
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label">昵称</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" value="{{username}}" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-email-input" class="col-sm-2 col-form-label">邮箱地址</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="email" value="{{useraddress}}" id="example-email-input">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="example-tel-input" class="col-sm-2 col-form-label">电话号码</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="tel" value="{{userphone}}" id="example-tel-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-password-input" class="col-sm-2 col-form-label">密码</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="password" value="{{userpasswd}}" id="example-password-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-number-input" class="col-sm-2 col-form-label">选定资产组合数量</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" value="4" id="example-number-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">注册时间</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="datetime-local" value="2019-10-17T13:45" id="example-datetime-local-input">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->      
+
+                        
+                    </div>
+                    <!-- container-fluid -->
+
+                </div>
+                <!-- content -->
+
+                <footer class="footer">
+                    © 2020 投资组合管理系统 <i class="mdi mdi-heart text-danger"></i> by 大创小队</a></span>
+                </footer>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- jQuery  -->
+        <script src="../static/assets/vertical/js/jquery.min.js"></script>
+        <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="../static/assets/vertical/js/metismenu.min.js"></script>
+        <script src="../static/assets/vertical/js/jquery.slimscroll.js"></script>
+        <script src="../static/assets/vertical/js/waves.min.js"></script>
+
+        <!-- App js -->
+        <script src="../static/assets/vertical/js/app.js"></script>
+        
+    </body>
+
+</html>

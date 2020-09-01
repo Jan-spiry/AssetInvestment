@@ -7,9 +7,9 @@
 
                 <!-- Logo-->
                 <div>
-                    <a href="advantage" class="logo">
+                    <a href="index" class="logo">
                         <span class="logo-light">
-                                <i class="mdi mdi-camera-control"></i> FOR AI
+                                <i class="mdi"><img src="../static/assets/images/logo.png" alt="" height="25"></i> FOR AI
                         </span>
                     </a>
                 </div>
@@ -38,16 +38,21 @@
                         <li class="dropdown notification-list list-inline-item">
                             <div class="dropdown notification-list nav-pro-img">
                                 <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">
+<!--                                    <img src="../../static/assets/images/users/user-4.jpg" alt="user" class="rounded-circle">-->
+                                    {% if username != '未登录' %}
+                                        <img id="pic"  src="../static/assets/images/ + {{userimg}}" height="25" width="25"  alt="user" class="rounded-circle">
+                                    {% else %}
+                                        <p><a href="{% url "login" %}" style="color:#ffffff;">{{username}}</a></p>
+                                    {% endif %}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                     <!-- item-->
-                                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
-                                    <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
-                                    <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>
-                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a>
+                                    <a class="dropdown-item" href="{% url "person" %}"><i class="mdi mdi-account-circle"></i>个人信息</a>
+                                    <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i>用户中心</a>
+                                    <a class="dropdown-item d-block" href="#"><i class="mdi mdi-settings"></i>使用指引</a>
+<!--                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i></a>-->
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    <a class="dropdown-item text-danger" href="/quit/"><i class="mdi mdi-power text-danger"></i>退出登录</a>
                                 </div>
                             </div>
                         </li>
@@ -86,37 +91,37 @@
                     <ul class="navigation-menu">
 
                         <li class="has-submenu">
-                            <a href="index.html"><i class="icon-accelerator"></i> 用户界面</a>
+                            <a href="center.html"><i class="icon-accelerator"></i>用户中心</a>
+                        </li>
+
+<!--                        <li class="has-submenu">-->
+<!--                            <a href="#"><i class="icon-pencil-ruler"></i>快速体验</a>-->
+<!--&lt;!&ndash;                            <ul class="submenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><a href="#">查看策略</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><a href="#">私人订制</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </ul>&ndash;&gt;-->
+<!--                        </li>-->
+
+                        <li class="has-submenu">
+                            <a href={% url "advantage" %}><i class="icon-life-buoy"></i> 关于我们</a>
+<!--                            <ul class="submenu">-->
+<!--                                <li><a href="#">我的组合 </a></li>-->
+<!--                                <li><a href="#">会员中心 </a></li>-->
+<!--                            </ul>-->
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="icon-pencil-ruler"></i> 功能 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
-                            <ul class="submenu">
-                                <li><a href="#">查看策略</a></li>
-                                <li><a href="#">私人订制</a></li>
-                            </ul>
-                        </li>
+                            <a href="#"><i class="icon-diamond"></i> 使用指引</a>
+<!--                              <ul class="submenu megamenu">-->
+<!--                                <li>-->
+<!--                                    <ul>-->
+<!--                                        <li><a href="#">关于我们</a></li>-->
+<!--    &lt;!&ndash;                                    <li><a href="#">常见问题</a></li>&ndash;&gt;-->
+<!--                                        <li><a href="#">使用指引</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
 
-                        <li class="has-submenu">
-                            <a href="#"><i class="icon-life-buoy"></i> 个人中心 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
-                            <ul class="submenu">
-                                <li><a href="#">我的组合 </a></li>
-                                <li><a href="#">会员中心 </a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has-submenu">
-                            <a href="#"><i class="icon-diamond"></i> 更多 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
-                        <ul class="submenu megamenu">
-                            <li>
-                                <ul>
-                                    <li><a href="#">关于我们</a></li>
-                                    <li><a href="#">常见问题</a></li>
-                                    <li><a href="#">使用指引</a></li>
-                                </ul>
-                            </li>
-
-                            </ul>
+<!--                            </ul>-->
                         </li>
 
 

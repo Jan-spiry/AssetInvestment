@@ -5,17 +5,21 @@
     <div class="content">
         <div class="container-fluid">
             <!-- end page-title -->
+            <div class="col-sm-6">
+                <h4 class="page-title">静态展示</h4>
+            </div>
+
             <div class="row">
+
                 <div class="col-xl-12">
+
                     <div class="card m-b-30">
+
                         <div class="card-body">
-                            <div class="button-items">
-                                <button type="button" class="btn btn-outline-secondary waves-effect">统计结果</button>
-                                <button type="button" class="btn btn-outline-primary waves-effect waves-light">实时动态</button>
-                            </div>
+
                             <h4 class="mt-0 header-title"></h4>
-                            <h4 class="mt-0 header-title">策略效果</h4>
-                            <p class="sub-title d-inline-block text-truncate w-100">显示策略与其他常规策略的比较</p>
+                            <h4 class="mt-0 header-title">年化收益率对比</h4>
+                            <p class="sub-title d-inline-block text-truncate w-100">显示机器学习算法策略与其他常规策略的比较</p>
                             <div id="strategy-stats" style="height: 320px" class="flot-chart"></div>
 
 
@@ -28,8 +32,8 @@
                     <div class="card m-b-30">
                         <div class="card-body">
 
-                            <h4 class="mt-0 header-title">组合变化</h4>
-                            <p class="sub-title d-inline-block text-truncate w-100">显示策略下资产组合的变化</p>
+                            <h4 class="mt-0 header-title">资产权重变化</h4>
+                            <p class="sub-title d-inline-block text-truncate w-100">显示不同时点的权重配置</p>
                             <div id="combination-stats" style="height: 320px" class="flot-chart"></div>
 
                         </div>
@@ -53,6 +57,10 @@
 
         </div>
         <!-- container-fluid -->
+
+        <div class="button-items">
+            <button type="button" class="position0 btn btn-info btn-lg waves-effect waves-light">动态展示</button>
+        </div>
 
     </div>
     <!-- content -->

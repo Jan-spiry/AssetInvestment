@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -142,4 +142,16 @@ STATICFILES_DIRS=(
     ('fonts', os.path.join(STATIC_URL, 'fonts').replace('\\', '/')),
     ('js', os.path.join(STATIC_URL, 'js').replace('\\', '/')),
 )
-
+STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+USER_ROOT = os.path.join(BASE_DIR, r'static\assets\images\users')
+# STATICFILES_DIRS=(
+#     os.path.join(BASE_DIR, 'static')
+#     ('css', os.path.join(STATIC_URL, 'css').replace('\\', '/')),
+#     ('images', os.path.join(STATIC_URL, 'images').replace('\\', '/')),
+#     ('fonts', os.path.join(STATIC_URL, 'fonts').replace('\\', '/')),
+#     ('js', os.path.join(STATIC_URL, 'js').replace('\\', '/')),
+# )
+# STATICFILES_FINDERS = (
+#     "django.contrib.staticfiles.finders.FileSystemFinder",
+#     "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+# )
